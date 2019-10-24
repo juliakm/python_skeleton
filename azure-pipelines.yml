@@ -10,8 +10,8 @@ stages:
 
   jobs:
   - job: A
-  #  variables:
-  #  - name: a
-  #    value: 'job yaml'
+    variables:
+    - name: a
+      value: 'job yaml'
     steps:
       - bash: echo $(a)        # This will be 'job yaml'
