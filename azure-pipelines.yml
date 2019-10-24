@@ -1,33 +1,19 @@
-trigger:
-- master
+variables:
+  a: 'pipeline yaml'
 
-pool:
-  vmImage: 'ubuntu-latest'
-strategy:
-  matrix:
-    Python27:
-      python.version: '2.7'
-    Python35:
-      python.version: '3.5'
-    Python36:
-      python.version: '3.6'
+stages:
+- stage: one
+  displayName: one
+  variables:
+   - group: G
+   - name: a
+     value: 'stage yaml'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
-
-- script: |
-    python -m pip install --upgrade pip
-  displayName: 'Install dependencies'
-
-- script: pip install tox
-  displayName: 'Install Tox'
-
-- script: tox -e py
-  displayName: 'Run Tox'
-
-- task: TwineAuthenticate@1
-  inputs:
-    artifactFeed: 'jukullam'
+  jobs:
+  - job: A
+    variables:
+    - group: G
+    - name: a
+      value: 'job yaml'
+    steps:
+      - bash: echo $(a)        # This will be 'job yaml'
