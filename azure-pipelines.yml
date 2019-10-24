@@ -5,14 +5,12 @@ stages:
 - stage: one
   displayName: one
   variables:
-   - group: G
    - name: a
      value: 'stage yaml'
 
   jobs:
   - job: A
     variables:
-    - group: G
     - name: a
       value: 'job yaml'
     steps:
