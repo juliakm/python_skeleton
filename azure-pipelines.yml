@@ -15,3 +15,5 @@ stages:
       value: 'job yaml'
     steps:
       - bash: echo $(a)        # This will be 'job yaml'
+      - bash: echo $(Agent.MachineName)
+      - bash: echo $(Agent.Name)
